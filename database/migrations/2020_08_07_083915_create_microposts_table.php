@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserMicropostsTable extends Migration
+class CreateMicropostsTable extends Migration
 {
  public function up()
     {
