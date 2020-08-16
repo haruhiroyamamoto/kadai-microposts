@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 class MicropostsController extends Controller
 {
-     public function index()
+    public function index()
     {
         $data = [];
-        if (\Auth::check()) {
-            // 認証済みユーザ（閲覧者）を取得
+        if (\Auth::check()) { // 認証済みの場合
+            // 認証済みユーザを取得
             $user = \Auth::user();
-            // ユーザとフォロー中ユーザの投稿の一覧を作成日時の降順で取得
-            $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
+            // ユーザの投稿の一覧を作成日時の降順で取得
+            $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
 
             $data = [
                 'user' => $user,
@@ -24,7 +24,7 @@ class MicropostsController extends Controller
         // Welcomeビューでそれらを表示
         return view('welcome', $data);
     }
-      public function store(Request $request)
+     public function store(Request $request)
     {
         // バリデーション
         $request->validate([
